@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to RegiSphere</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            padding: 20px;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.3);
+            font-size: 2em;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .btn-group {
+            margin-top: 30px;
+        }
+
+        .btn {
+            background-color: #00c6ff;
+            border: none;
+            padding: 15px 30px;
+            margin: 10px;
+            border-radius: 30px;
+            font-size: 1em;
+            font-weight: 600;
+            color: #fff;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0072ff;
+        }
+
+        footer {
+            padding: 15px;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.2);
+            font-size: 0.9em;
+        }
+
+        .tagline {
+            font-size: 1.2em;
+            margin-top: 10px;
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    RegiSphere
+    <div class="tagline">Your gateway to seamless event registration</div>
+</header>
+
+<main>
+    <h1>Welcome to the Registration Desk</h1>
+    <p>Manage attendees, track entries, and keep your event organized—all from one sleek interface.</p>
+
+    <div class="btn-group">
+        <button class="btn" onclick="location.href='/register_form'">📋 Register Attendee</button>
+        <button class="btn" onclick="location.href='/view-entries'">📑 View Entries</button>
+        <button class="btn" onclick="location.href='/about'">ℹ️ About Event</button>
+    </div>
+</main>
+
+<footer>
+    &copy; 2025 DSPMU Event Committee | Crafted by Neal & Team 🚀
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>RegiSphere | View Entries</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1f1c2c, #928dab);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            padding: 20px;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.3);
+            font-size: 2em;
+            font-weight: 600;
+        }
+
+        .tagline {
+            font-size: 1em;
+            color: #ccc;
+            margin-top: 5px;
+        }
+
+        main {
+            flex: 1;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        table {
+            width: 90%;
+            max-width: 1000px;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ccc;
+        }
+
+        th {
+            background-color: rgba(0, 0, 0, 0.2);
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .back-btn {
+            margin-top: 30px;
+            padding: 12px 25px;
+            background: #00c6ff;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            color: #fff;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: #0072ff;
+        }
+
+        footer {
+            padding: 15px;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.2);
+            font-size: 0.9em;
+            color: #ddd;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    RegiSphere
+    <div class="tagline">Registered Attendees Overview</div>
+</header>
+
+<main>
+    <table>
+        <thead>
+        <tr>
+            <th>Reg. ID</th>
+            <th>Name</th>
+            <th>City</th>
+            <th>Email</th>
+            <th>Phone</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="attendee : ${attendees}">
+            <td th:text="${attendee.user_id}">1</td>
+            <td th:text="${attendee.user_Name}">John Doe</td>
+            <td th:text="${attendee.user_City}">Ranchi</td>
+            <td th:text="${attendee.user_Email}">john@example.com</td>
+            <td th:text="${attendee.user_Phone_no}">9876543210</td>
+            <td th:text="${attendee.Registered_on}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <button class="back-btn" onclick="location.href='/'">⬅ Back to Home</button>
+</main>
+
+<footer>
+    &copy; 2025 DSPMU Event Committee | Powered by RegiSphere
+</footer>
+
+</body>
+</html>

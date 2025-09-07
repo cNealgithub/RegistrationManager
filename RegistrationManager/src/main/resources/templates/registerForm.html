@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>RegiSphere | Attendee Registration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1f1c2c, #928dab);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            color: #fff;
+        }
+
+        header {
+            padding: 20px;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.3);
+            font-size: 2em;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .tagline {
+            font-size: 1em;
+            color: #ccc;
+            margin-top: 5px;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 10px;
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid #ccc;
+            color: #fff;
+            font-size: 1em;
+            outline: none;
+        }
+
+        .input-group label {
+            position: absolute;
+            top: 12px;
+            left: 10px;
+            color: #aaa;
+            pointer-events: none;
+            transition: 0.3s ease;
+        }
+
+        .input-group input:focus + label,
+        .input-group input:not(:placeholder-shown) + label {
+            top: -10px;
+            left: 5px;
+            font-size: 0.8em;
+            color: #00c6ff;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .btn {
+            flex: 1;
+            margin: 0 5px;
+            padding: 12px;
+            background: #00c6ff;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            color: #fff;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #0072ff;
+        }
+
+        footer {
+            padding: 15px;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.2);
+            font-size: 0.9em;
+            color: #ddd;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    RegiSphere
+    <div class="tagline">Your gateway to seamless event registration</div>
+</header>
+
+<main>
+    <div class="form-container">
+        <h2>Register Attendee</h2>
+        <form action="/submit-registration" method="POST">
+            <div class="input-group">
+                <input type="text" name="user_Name" required placeholder=" " />
+                <label>Name</label>
+            </div>
+            <div class="input-group">
+                <input type="text" name="user_City" required placeholder=" " />
+                <label>City</label>
+            </div>
+            <div class="input-group">
+                <input type="email" name="user_Email" required placeholder=" " />
+                <label>Email</label>
+            </div>
+            <div class="input-group">
+                <input type="text" name="user_Phone_no" required maxlength="10" placeholder=" " />
+                <label>Phone Number</label>
+            </div>
+
+            <div th:if="${success_msg}" style="margin: 20px auto; padding: 15px; background-color: #00c6ff; color: white; border-radius: 10px; text-align: center; width: 80%;">
+                <p th:text="${success_msg}"></p>
+            </div>
+
+            <div class="btn-group">
+                <button class="btn" type="button" onclick="location.href='/'">⬅ Home</button>
+                <button class="btn" type="reset">🔄 Reset</button>
+                <button class="btn" type="submit">🚀 Submit</button>
+            </div>
+        </form>
+    </div>
+</main>
+
+<footer>
+    &copy; 2025 DSPMU Event Committee | Crafted by Neal & Team 🚀 | Powered by RegiSphere
+</footer>
+
+</body>
+</html>
