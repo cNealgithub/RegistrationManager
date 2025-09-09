@@ -32,11 +32,12 @@ public class HomeController {
 
     @PostMapping("/submit-registration")
     public String registerAttendee(@ModelAttribute Attendees ad, RedirectAttributes redatter){
-        registrationService.saveAttendee(ad);
         LocalDateTime ldt = LocalDateTime.now();
-        String mydate = ldt.toString();
-        ad.setRegistered_on(mydate);
+        ad.setRegistered_on(ldt);
+        registrationService.saveAttendee(ad);
         redatter.addFlashAttribute("success_msg", "Attendee Registered Succesfully!!!");
+        //debugging for date
+        System.out.println("the date" + ldt);
         return "redirect:/register_form";
     }
 

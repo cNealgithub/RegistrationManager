@@ -3,25 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <title>Welcome to RegiSphere</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
-        body {
+        :root {
+            --primary: #667eea;
+            --primary-dark: #5a6fd8;
+            --secondary: #764ba2;
+            --accent: #f093fb;
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.8);
+            --glass: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --shadow: rgba(0, 0, 0, 0.3);
+        }
+
+        * {
             margin: 0;
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-            color: #fff;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
+            z-index: -1;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(1deg); }
+            66% { transform: translateY(10px) rotate(-1deg); }
+        }
+
+        .container {
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
 
         header {
-            padding: 20px;
+            padding: 2rem;
             text-align: center;
-            background-color: rgba(0, 0, 0, 0.3);
-            font-size: 2em;
-            font-weight: 600;
-            letter-spacing: 1px;
+            backdrop-filter: blur(20px);
+            background: var(--glass);
+            border-bottom: 1px solid var(--glass-border);
+            position: relative;
+            z-index: 10;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .brand {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff 0%, #f093fb 50%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3)); }
+            to { filter: drop-shadow(0 0 40px rgba(255, 147, 251, 0.5)); }
+        }
+
+        .tagline {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+            letter-spacing: 0.5px;
         }
 
         main {
@@ -30,66 +112,347 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            padding: 4rem 2rem;
             text-align: center;
-            padding: 40px;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff 0%, rgba(255, 255, 255, 0.8) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            line-height: 1.6;
+            font-weight: 300;
         }
 
         .btn-group {
-            margin-top: 30px;
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 2rem;
         }
 
         .btn {
-            background-color: #00c6ff;
-            border: none;
-            padding: 15px 30px;
-            margin: 10px;
-            border-radius: 30px;
-            font-size: 1em;
-            font-weight: 600;
-            color: #fff;
+            position: relative;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            padding: 1.2rem 2.5rem;
+            border-radius: 16px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text-primary);
             cursor: pointer;
-            transition: background 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            box-shadow: 0 8px 32px var(--shadow);
+            overflow: hidden;
+            min-width: 200px;
+            justify-content: center;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
         }
 
         .btn:hover {
-            background-color: #0072ff;
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .btn:active {
+            transform: translateY(-4px) scale(1.02);
+        }
+
+        .btn i {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover i {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .btn.primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border: none;
+            box-shadow: 0 8px 32px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn.primary:hover {
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.6);
+            background: linear-gradient(135deg, var(--primary-dark), var(--secondary));
         }
 
         footer {
-            padding: 15px;
+            padding: 2rem;
             text-align: center;
-            background-color: rgba(0, 0, 0, 0.2);
-            font-size: 0.9em;
+            backdrop-filter: blur(20px);
+            background: var(--glass);
+            border-top: 1px solid var(--glass-border);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            animation: slideUp 0.8s ease-out 0.6s both;
         }
 
-        .tagline {
-            font-size: 1.2em;
-            margin-top: 10px;
-            color: #ccc;
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .rocket {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        /* Floating particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: floatParticle 15s infinite linear;
+        }
+
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .brand {
+                font-size: 2.5rem;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .btn-group {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            main {
+                padding: 2rem 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header, main, footer {
+                padding: 1.5rem 1rem;
+            }
+
+            .brand {
+                font-size: 2rem;
+            }
+
+            .tagline {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 <body>
+<div class="container">
+    <div class="particles" id="particles"></div>
 
-<header>
-    RegiSphere
-    <div class="tagline">Your gateway to seamless event registration</div>
-</header>
+    <header>
+        <h1 class="brand">RegiSphere</h1>
+        <div class="tagline">Your gateway to seamless event registration</div>
+    </header>
 
-<main>
-    <h1>Welcome to the Registration Desk</h1>
-    <p>Manage attendees, track entries, and keep your event organized—all from one sleek interface.</p>
+    <main>
+        <h1 class="hero-title">Welcome to the Registration Desk</h1>
+        <p class="hero-subtitle">
+            Manage attendees, track entries, and keep your event organized—all from one sleek, modern interface designed for efficiency and elegance.
+        </p>
 
-    <div class="btn-group">
-        <button class="btn" onclick="location.href='/register_form'">📋 Register Attendee</button>
-        <button class="btn" onclick="location.href='/view-entries'">📑 View Entries</button>
-        <button class="btn" onclick="location.href='/about'">ℹ️ About Event</button>
-    </div>
-</main>
+        <div class="btn-group">
+            <button class="btn primary" onclick="location.href='/register_form'">
+                <i class="fas fa-user-plus"></i>
+                Register Attendee
+            </button>
+            <button class="btn" onclick="location.href='/view-entries'">
+                <i class="fas fa-list-alt"></i>
+                View Entries
+            </button>
+            <button class="btn" onclick="location.href='/about'">
+                <i class="fas fa-info-circle"></i>
+                About Event
+            </button>
+        </div>
+    </main>
 
-<footer>
-    &copy; 2025 DSPMU Event Committee | Crafted by Neal & Team 🚀
-</footer>
+    <footer>
+        <div class="footer-content">
+            <span>&copy; 2025 DSPMU Event Committee</span>
+            <span>|</span>
+            <span>Crafted by Neal & Team</span>
+            <span class="rocket">🚀</span>
+        </div>
+    </footer>
+</div>
 
+<script>
+    // Create floating particles
+    function createParticles() {
+        const particles = document.getElementById('particles');
+        const particleCount = 20;
+
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            particles.appendChild(particle);
+        }
+    }
+
+    // Add smooth scrolling and enhanced interactions
+    document.addEventListener('DOMContentLoaded', function() {
+        createParticles();
+
+        // Add ripple effect to buttons
+        const buttons = document.querySelectorAll('.btn');
+        buttons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(255, 255, 255, 0.5)';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 0.6s linear';
+                ripple.style.pointerEvents = 'none';
+
+                this.appendChild(ripple);
+
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+    });
+
+    // Add ripple animation
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+
+    // Add parallax effect to background
+    document.addEventListener('mousemove', function(e) {
+        const x = e.clientX / window.innerWidth;
+        const y = e.clientY / window.innerHeight;
+
+        document.body.style.backgroundPosition = `${x * 20}px ${y * 20}px`;
+    });
+</script>
 </body>
 </html>

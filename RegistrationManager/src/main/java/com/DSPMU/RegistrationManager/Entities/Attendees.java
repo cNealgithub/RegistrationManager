@@ -2,6 +2,8 @@ package com.DSPMU.RegistrationManager.Entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 public class Attendees {
 
@@ -18,7 +20,7 @@ public class Attendees {
     @Column(name = "Phone Number", length = 10, unique = true)
     private String user_Phone_no;
     @Column(name = "Registered on/at")
-    private String Registered_on;
+    private LocalDateTime Registered_on;
 
 
     Attendees(){
@@ -65,15 +67,15 @@ public class Attendees {
         this.user_Phone_no = user_Phone_no;
     }
 
-    public String getRegistered_on() {
+    public LocalDateTime getRegistered_on() {
         return Registered_on;
     }
 
-    public void setRegistered_on(String registered_on) {
+    public void setRegistered_on(LocalDateTime registered_on) {
         Registered_on = registered_on;
     }
 
-    public Attendees(Long user_id, String user_Name, String user_City, String user_Email, String user_Phone_no, String registered_on) {
+    public Attendees(Long user_id, String user_Name, String user_City, String user_Email, String user_Phone_no, LocalDateTime registered_on) {
         this.user_id = user_id;
         this.user_Name = user_Name;
         this.user_City = user_City;
